@@ -1,0 +1,66 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/9/28
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@model IEnumerable<TA__Application.Models.Application>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Applicants Summary</h1>
+    <a asp-action="List">Go to List</a>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <table class="applicant_table">
+            <tr>
+                <th>Catagery</th>
+                <th>Data</th>
+            </tr>
+
+            <tbody>
+
+                <tr>
+                    <td>Total Applicants</td>
+                    <td>@Model.Count()</td>
+                </tr>
+                <tr>
+                    <td>Avg GPA</td>
+                    <td>@Model.Average(i => i.GPA).ToString("0.00")</td>
+                </tr>
+                <tr>
+                    <td>Min GPA</td>
+                    <td>@Model.Min(i => i.GPA)</td>
+                </tr>
+                <tr>
+                    <td>Max GPA</td>
+                    <td>@Model.Max(i => i.GPA)</td>
+                </tr>
+
+
+                @*<tr>
+                    <td>Avg Hour</td>
+                    <td>@Model.Average(i => i.Hour).ToString("0.00")</td>
+                </tr>
+                <tr>
+                    <td>Min Hour</td>
+                    <td>@Model.Min(i => i.Hour)</td>
+                </tr>
+                <tr>
+                    <td>Max Hour</td>
+                    <td>@Model.Max(i => i.Hour)</td>
+                </tr>*@
+            </tbody>
+        </table>
+    </div>
+</div>

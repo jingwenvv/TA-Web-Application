@@ -1,0 +1,141 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/9/28
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+@using Microsoft.AspNetCore.Identity
+@using TA__Application.Data;
+@using TA__Application.Areas.Identity.Data;
+
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+@inject TA_DB context
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TA Application</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TAApplication</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        @if (User.IsInRole("Administrator"))
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="List">Applicants</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ListUserRole">Roles</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Chart">Chart</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+                            </li>
+
+
+
+                        }
+                        else if (User.IsInRole("Applicant"))
+                        {
+                            var user = await UserManager.GetUserAsync(User);
+                            var ID = user.Id;
+                            var isValid = false;
+                            var appId = 0;
+                            foreach (var app in context.Applications)
+                            {
+                                if (app.UserID == ID)
+                                {
+                                    isValid = true;
+                                    appId = app.ID;
+                                }
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="Index">Home</a>
+                            </li>
+
+                            @if (isValid)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Applications" asp-action="Details" asp-route-id="@appId">Application</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Applications" asp-action="Edit" asp-route-id="@appId">Edit</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Availabilities" asp-action="Index">Availability</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="Create">Apply</a>
+                                </li>
+                            }
+
+
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="List">Applicants</a>
+                            </li>
+
+ 
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+                            </li>
+
+                        }
+
+                    </ul>
+
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

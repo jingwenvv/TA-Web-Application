@@ -1,0 +1,121 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/9/28
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@model TA__Application.Models.Application
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Application</h4>
+<hr />
+<div class="application_edit">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstMidName" class="control-label"></label>
+            <input asp-for="FirstMidName" class="form-control" placeholder="Enter first name" />
+            <span asp-validation-for="FirstMidName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UID" class="control-label"></label>
+            <input asp-for="UID" class="form-control" placeholder="u1234567" />
+            <span asp-validation-for="UID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" placeholder="555-555-5555" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" placeholder="Enter address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Degree" class="control-label"></label>
+            <select asp-for="Degree" class="form-control" asp-items="Html.GetEnumSelectList<Degree>()">
+                <option selected="selected" value="">Please select Degree</option>
+            </select>
+            <span asp-validation-for="Degree" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Program" class="control-label"></label>
+            <select asp-for="Program" class="form-control" asp-items="Html.GetEnumSelectList<TA__Application.Models.Program>()">
+                <option selected="selected" value="">Please select Program</option>
+            </select>
+            <span asp-validation-for="Program" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GPA" class="control-label"></label>
+            <input asp-for="GPA" class="form-control" />
+            <span asp-validation-for="GPA" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Availabilities" class="control-label"></label>
+            <input asp-for="Availabilities" class="form-control" />
+            <span asp-validation-for="Availabilities" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EnglishFluency" class="control-label"></label>
+            <select asp-for="EnglishFluency" class="form-control" asp-items="Html.GetEnumSelectList<EnglishFluency>()">
+                <option selected="selected" value="">Please select English Fluency</option>
+            </select>
+            <span asp-validation-for="EnglishFluency" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Semesters" class="control-label"></label>
+            <input asp-for="Semesters" class="form-control" />
+            <span asp-validation-for="Semesters" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkedInURL" class="control-label"></label>
+            <input asp-for="LinkedInURL" class="form-control" />
+            <span asp-validation-for="LinkedInURL" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PersonalStatement" class="control-label"></label>
+            <textarea asp-for="PersonalStatement" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="PersonalStatement" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CreationDate" class="control-label"></label>
+            <input asp-for="CreationDate" class="form-control" />
+            <span asp-validation-for="CreationDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ModificationDate" class="control-label"></label>
+            <input asp-for="ModificationDate" class="form-control" />
+            <span asp-validation-for="ModificationDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

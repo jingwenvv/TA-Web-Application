@@ -1,0 +1,139 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/9/11
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 - This work may not be copied for use in Academic Coursework.
+
+-->
+
+@{
+    ViewData["Title"] = "HW2_Edit";
+}
+
+<div class="application_form">
+    <div id="applicant_name" class="default_header">
+        <h1> Application Form</h1>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="uname">Name:</label>
+            <input type="text" class="form-control" id="uname" placeholder="Enter name" name="uname" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="uid">UID:</label>
+            <input type="text" class="form-control" id="uid" placeholder="uxxxxxxx" name="uid" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address:</label>
+            <input type="email" class="form-control" id="uemail" placeholder="Enter Email" aria-describedby="emailHelp">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="phoneTextarea1">Phone number:</label>
+            <input type="text" class="form-control bfh-phone" id="uphone" placeholder="(555)555-5555" data-format="+1 (ddd) ddd-dddd">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="ugpa">GPA:</label>
+            <input type="number" class="form-control" required name="GPA" min="0" max="4" value="0" step=".01">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group">
+            <label class="my-1 mr-2" for="ugraduateyear">Graduate Year:</label>
+            <select class="custom-select my-1 mr-sm-2" id="ugraduateyear">
+                <option selected>Choose...</option>
+                <option value="1">Fall 2021</option>
+                <option value="2">Spring 2022</option>
+                <option value="3">Summer 2022</option>
+                <option value="4">Fall 2022</option>
+                <option value="5">Spring 2023</option>
+                <option value="6">Summer 2023</option>
+            </select>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label class="my-1 mr-2" for="ucourse1">Interested Course 1:</label>
+                <select class="custom-select my-1 mr-sm-2" id="ucourse1">
+                    <option selected>Choose...</option>
+                    <option value="1">CS 4000</option>
+                    <option value="2">CS 4150</option>
+                    <option value="3">CS 4230</option>
+                    <option value="4">CS 4400</option>
+                    <option value="5">CS 4600</option>
+                </select>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="my-1 mr-2" for="ucourse2">Interested Course 2:</label>
+                <select class="custom-select my-1 mr-sm-2" id="ucourse2">
+                    <option selected>Choose...</option>
+                    <option value="1">CS 4000</option>
+                    <option value="2">CS 4150</option>
+                    <option value="3">CS 4230</option>
+                    <option value="4">CS 4400</option>
+                    <option value="5">CS 4600</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label class="my-1 mr-2" for="ucourse3">Interested Course 3:</label>
+                <select class="custom-select my-1 mr-sm-2" id="ucourse2">
+                    <option selected>Choose...</option>
+                    <option value="1">CS 4000</option>
+                    <option value="2">CS 4150</option>
+                    <option value="3">CS 4230</option>
+                    <option value="4">CS 4400</option>
+                    <option value="5">CS 4600</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="uhour">Available hour per week:</label>
+            <input type="number" class="form-control" required name="hour" min="5" max="20" value="0" step="1">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="utranscript">Please update your transcript (unofficial/official):</label>
+            <input type="file" class="form-control-file" id="utranscript">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="uresume">Please update your resume (optional):</label>
+            <input type="file" class="form-control-file" id="uresume">
+        </div>
+
+        <div class="form-group">
+            <label for="ustatement">Peronal statement (optional):</label>
+            <textarea class="form-control" id="ustatement" rows="3"></textarea>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">some accept rules and laws...</label>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please check out this box.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

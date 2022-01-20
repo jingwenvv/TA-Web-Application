@@ -1,0 +1,196 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "List Users and Roles";
+}
+
+<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/10/24
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css" />
+<style>
+    .list_section {
+        background-color: white;
+        border: none;
+        padding: 20px;
+        overflow: hidden;
+        border-radius: 25px;
+        margin-bottom: 20px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+
+<div class="list_section">
+    <table id="ListUserRole">
+        <thead>
+            <tr>
+                <th> Name </th>
+                @{
+                    foreach (var role in ViewBag.roles)
+                    {
+                        <th>@role.Name</th>
+                    }
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var user in ViewBag.users)
+                {
+                    <tr>
+                        <th>@user.UserName</th>
+
+                        @{ foreach (var role in ViewBag.roles)
+                            {
+                                bool isValid = await (ViewBag.um).IsInRoleAsync(user, role.Name);
+                                string checkBoxId = user.UserName + role.Name;
+
+                                @if (isValid)
+                                {
+                                    <th>
+                                        <label class="switch">
+                                            <input onclick="roleRemove('@user.UserName@role.Name')" id=@user.UserName@role.Name type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </th>
+                                }
+                                else
+                                {
+                                    <th>
+                                        <label class="switch">
+                                            <input onclick="roleChange('@user.Id','@role.Name','@user.UserName@role.Name')" id=@user.UserName@role.Name type="checkbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </th>
+                                }
+                            }
+                        }
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function roleChange(value1, value2, value3) {
+        Swal.fire({
+            title: 'Do you want to change the role?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                var path = "/Admin/Change_Role";
+                var data = { userID: value1, role: value2 };
+
+                $.post(path, data)
+                    .done(function (result) {
+                        Swal.fire('Changed!', '', 'success').then((result) => {
+                            // Reload the Page
+                            location.reload();
+                        });
+                    })
+                    .fail(function (result) {
+                        Swal.fire('', 'Failed to change the role', 'info')
+                        document.getElementById(value3).checked = false;
+                    })
+                    .always(function () {
+                        $("#spinner").hide();
+                    });
+
+            } else if (result.isDenied) {
+                Swal.fire('Not changed', '', 'info')
+                document.getElementById(value3).checked = false;
+            }
+        })
+
+    }
+
+    function roleRemove(value) {
+        Swal.fire('Please choose a different role!');
+        document.getElementById(value).checked = true;
+    }
+
+    $(document).ready(function () {
+        $('#ListUserRole').DataTable();
+    });
+
+</script>
+
+

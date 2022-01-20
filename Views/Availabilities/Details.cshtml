@@ -1,0 +1,72 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/11/28
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@model IEnumerable<TA__Application.Models.Availability>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewBag.name 's Availability</h1>
+<h7><a asp-controller="Applications" asp-action="List">Go back to Applicant List</a></h7>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.js"></script>
+<script type="text/javascript" src="~/js/AvailabilityTracker.js"></script>
+
+<script type="text/javascript">
+
+    //Create a Pixi Application
+    let app = new PIXI.Application({
+    antialias: true,    // default: false
+    transparent: false, // default: false
+    resolution: 1       // default: 1
+    });
+
+    //Add the canvas that Pixi automatically created to the HTML document
+    document.body.appendChild(app.view);
+
+    app.renderer.backgroundColor = 0x061639;
+
+    app.renderer.view.style.position = "absolute";
+    app.renderer.view.style.display = "block";
+    app.renderer.autoResize = true;
+    app.renderer.resize(window.innerWidth, window.innerHeight);
+
+    var jsPreSlots = [];
+    var array = @Html.Raw(Json.Serialize(@ViewBag.preAvas));
+    for(var i = 0; i < array.length; i++) {
+        jsPreSlots[i] = array[i];
+    }
+
+    let name = @Html.Raw(Json.Serialize(@ViewBag.name));
+    let access = @Html.Raw(Json.Serialize(@ViewBag.access));
+
+    tracker = new AvailabilityTracker();
+    if (access) {
+        tracker.setslots_draw(app, jsPreSlots, userID);
+        tracker.slots_draw(app);
+        tracker.button_draw(app, userID);
+    } else {
+        tracker.readonly_draw(app, jsPreSlots);
+        tracker.slots_draw(app);
+        tracker.name_draw(app, name);
+    }
+
+</script>

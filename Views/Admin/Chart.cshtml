@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Charting";
+}
+
+<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/12/12
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+<div class="course_section">
+    <h1 class="display-4">Chart</h1>
+    <label for="cars">Start Date:</label>
+    <input id="startDate" value="2021-11-15" type="date" name="task_date" />
+    <label for="cars">End Date:</label>
+    <input id="endDate" value="2021-12-09" type="date" name="task_date" />
+    <br><br>
+    <label for="cars">Choose a Course:</label>
+    <select name="course" id="course">
+        @foreach (var e in ViewBag.enrollments)
+        {
+            <option value="@e.course">@e.course</option>
+        }
+
+    </select>
+    <br><br>
+    <button class="update_button" onclick="update_DateTime()">Get Data</button>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+    <figure class="highcharts-figure">
+        <div id="chart"></div>
+    </figure>
+</div>
+
+@section Styles
+{
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.3.2/css/highcharts.min.css"
+          integrity="sha512-/G4PBY3DrEXBrex90H73x+CRfmCvcSp57ifLtzrwVs4HmOVDccjIPSpGyJwKJmg6qfEDi0tHFaq2mLECK40WjQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <style>
+        button.update_button {
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            transition-duration: 0.4s;
+        }
+
+            button.update_button:hover {
+                border: 2px solid #4CAF50;
+                background-color: white;
+                color: #4CAF50;
+            }
+
+        .highcharts-figure {
+            margin: 20px;
+        }
+
+        .course_section{
+            padding-left: 20px;
+        }
+
+
+        #overlay {
+            position: absolute;
+            margin: auto;
+
+            bottom: 10%;
+            z-index: 100;
+            width: 63%;
+            height: 79%;
+            display: none;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .cv-spinner {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px #ddd solid;
+            border-top: 4px #2e93e6 solid;
+            border-radius: 50%;
+            animation: sp-anime 0.8s infinite linear;
+        }
+
+        @@keyframes sp-anime {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .is-hide {
+            display: none;
+        }
+    </style>
+}
+
+@section Scripts
+{
+    <script>
+        var startDate = Date.UTC(2021, 10, 15);
+        function update_DateTime() {
+            startDate = document.getElementById("date").value;
+        }
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.3.2/highcharts.js"
+            integrity="sha512-dm3Cn0X6XyRMz52WqL1wag+e2WCNAnggh2+4mv/9Ngd+IhBIH9NEQYUZ4g3A6GJUbhKrGw5hErqcFIyk73lUgA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="~/js/Admin/Chart.js"></script>
+}
+
+
+

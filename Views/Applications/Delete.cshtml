@@ -1,0 +1,125 @@
+﻿<!--
+  Author:    Professor
+  Partner:   -Na-
+  Date:      2021/9/11
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 - This work may not be copied for use in Academic Coursework.
+
+-->
+@model TA__Application.Models.Application
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="application_edit">
+    <h4>Application</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstMidName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstMidName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Program)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Program)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GPA)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Availabilities)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Availabilities)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonalStatement)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalStatement)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EnglishFluency)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EnglishFluency)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Semesters)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Semesters)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedInURL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedInURL)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModificationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModificationDate)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="List">Back to List</a>
+    </form>
+</div>

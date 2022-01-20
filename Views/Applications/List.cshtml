@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TA__Application.Models.Application>
+
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<table class="applicant_table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstMidName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Availabilities)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Degree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Program)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPA)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishFluency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semesters)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in ViewBag.Applications)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@app.ID">
+                        @app.LastName
+                    </a>
+                </td>
+                <td>
+                    @app.FirstMidName
+                </td>
+                <td>
+                    @app.UID
+                </td>
+                <td>
+                   
+                    <a asp-controller="Availabilities" asp-action="Details" asp-route-id="@app.ID">
+                        @app.Availabilities
+                    </a>
+                </td>
+
+                <td>
+                    @app.Degree
+                </td>
+                <td>
+                    @app.Program
+                </td>
+                <td>
+                    @app.GPA
+                </td>
+                
+                <td>
+                    @app.EnglishFluency
+                </td>
+                <td>
+                    @app.Semesters
+                </td>
+
+                <td>
+                    @app.PhoneNumber
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

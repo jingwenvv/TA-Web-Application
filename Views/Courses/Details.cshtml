@@ -1,0 +1,150 @@
+﻿@model TA__Application.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+}
+<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/10/24
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@using Microsoft.AspNetCore.Identity
+@using TA__Application.Areas.Identity.Data;
+
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+
+
+
+    <h1>Details</h1>
+
+    <div class="applicant_view">
+        <h4>Course</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CourseNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CourseNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClassNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ClassNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Section)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Section)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProfessorUNID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProfessorUNID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProfessorName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProfessorName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DayOffered)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DayOffered)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TimeStart)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TimeStart)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TimeEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TimeEnd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SemesterOffered)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SemesterOffered)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.YearOffered)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.YearOffered)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CreditHour)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CreditHour)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnrollmentCap)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnrollmentCap)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Enrolled)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Enrolled)
+            </dd>
+            @if (User.IsInRole("Administrator"))
+            {
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Note)
+                </dd>
+            }
+        </dl>
+    </div>
+    @if (User.IsInRole("Administrator"))
+    {
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }

@@ -1,0 +1,184 @@
+﻿@model IEnumerable<TA__Application.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/10/24
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@using Microsoft.AspNetCore.Identity
+@using TA__Application.Areas.Identity.Data;
+
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+
+
+<style>
+    button.update_button {
+        border: 2px solid #4CAF50;
+        border-radius: 8px;
+        background-color: #4CAF50;
+        color: white;
+        transition-duration: 0.4s;
+    }
+
+        button.update_button:hover {
+            border: 2px solid #4CAF50;
+            background-color: white;
+            color: #4CAF50;
+        }
+
+    button.delete_button {
+        border: 2px solid #ff0000;
+        border-radius: 8px;
+        background-color: #ff0000;
+        color: white;
+        transition-duration: 0.4s;
+    }
+
+        button.delete_button:hover {
+            border: 2px solid #ff0000;
+            background-color: white;
+            color: #ff0000;
+        }
+</style>
+
+<div class="couselist">
+    <div id="courseList_header" class="default_header">
+        <h1> Course List</h1>
+        <h5><a asp-action="Create">Create New</a></h5>
+    </div>
+
+    @foreach (var item in Model)
+    {
+    <div class="course_section">
+        <div class="course_info">
+            <h3>
+                <a asp-action="Details" asp-route-id="@item.ID">
+                    @Html.DisplayFor(modelItem => item.Department)@Html.DisplayFor(modelItem => item.CourseNumber)
+                </a> :
+                @Html.DisplayFor(modelItem => item.Section) - @Html.DisplayFor(modelItem => item.Title)
+            </h3>
+            <ul class="course_list">
+                <li> @Html.DisplayNameFor(model => model.ClassNumber): @Html.DisplayFor(modelItem => item.ClassNumber)</li>
+                <li> @Html.DisplayNameFor(model => model.ProfessorName): @Html.DisplayFor(modelItem => item.ProfessorName)</li>
+                <li> @Html.DisplayNameFor(model => model.EnrollmentCap): @Html.DisplayFor(modelItem => item.EnrollmentCap)</li>
+                <li> @Html.DisplayNameFor(model => model.Enrolled): @Html.DisplayFor(modelItem => item.Enrolled)</li>
+                <li> @Html.DisplayNameFor(model => model.CreditHour): @Html.DisplayFor(modelItem => item.CreditHour)</li>
+                <li>Days/Times: @Html.DisplayFor(modelItem => item.DayOffered)/@Html.DisplayFor(modelItem => item.TimeStart)-@Html.DisplayFor(modelItem => item.TimeEnd)</li>
+                <li>@Html.DisplayNameFor(model => model.Location): @Html.DisplayFor(modelItem => item.Location)</li>
+            </ul>
+        </div>
+        @if (User.IsInRole("Administrator"))
+            {
+
+        <div class="course_description">
+
+            <h5>
+                @Html.DisplayNameFor(model => model.Note):
+                @Html.DisplayFor(modelItem => item.Note)
+            </h5>
+            <button class="update_button" onclick="noteUpdate('@item.ID', '@Html.DisplayFor(modelItem => item.Note)')">Update</button>
+            <button class="delete_button" onclick="noteDelete('@item.ID')">Delete</button>
+
+        </div>
+        <hr>
+        <h5>
+            <a asp-action="Edit" asp-route-id="@item.ID">Course Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.ID">Course Delete</a>
+        </h5>
+            }
+    </div>
+    }
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function noteUpdate(value1, value2) {
+        (async () => {
+
+            const { value: text } = await Swal.fire({
+                input: 'textarea',
+                inputLabel: 'Update the Note',
+                inputValue: value2,
+                inputAttributes: {
+                    'aria-label': 'Type your message here'
+                },
+                showDenyButton: true,
+                confirmButtonText: 'OK',
+                denyButtonText: `Cancel`
+            })
+
+            if (text) {
+                if (text != value2) {
+                    var path = "/Courses/Note_Update";
+                    var data = { courseID: value1, newNote: text };
+
+                    $.post(path, data)
+                        .done(function () {
+                            Swal.fire('Note Updated!', '', 'success').then(() => {
+                                // Reload the Page
+                                location.reload();
+                            });
+                        })
+                        .fail(function () {
+                            Swal.fire('', 'Failed to change the Note', 'info')
+                        });
+
+                } else {
+                    Swal.fire('Note Unchanged', '', 'info')
+                }
+            } else {
+                Swal.fire('Note Unchanged', '', 'info')
+            }
+        })()
+    }
+
+    function noteDelete(value1) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                var path = "/Courses/Note_Delete";
+                var data = { courseID: value1 };
+
+                $.post(path, data)
+                    .done(function () {
+                        Swal.fire(
+                            'Deleted!',
+                            'The Note has been deleted.',
+                            'success'
+                        ).then(() => {
+                            // Reload the Page
+                            location.reload();
+                        });
+                    })
+                    .fail(function () {
+                        Swal.fire('', 'Failed to delete the Note', 'info')
+                    });
+
+            }
+        })
+    }
+
+</script>
+
+

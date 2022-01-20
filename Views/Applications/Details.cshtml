@@ -1,0 +1,136 @@
+﻿<!--
+  Author:    Jingwen Zhang
+  Partner:   -Na-
+  Date:      2021/9/28
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+  I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+-->
+
+@model TA__Application.Models.Application
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details</h1>
+
+<div class="applicant_view">
+    <h4>Application</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="img-fluid" src="~/img/jim.jpg" alt="Picture of Jim from the Office" />
+            <hr />
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com">LinkedIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Github</a>
+                </li>
+            </ul>
+            <hr />
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.FirstMidName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FirstMidName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.UID)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.UID)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Degree)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Degree)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Program)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Program)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.GPA)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.GPA)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Availabilities)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Availabilities)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.EnglishFluency)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.EnglishFluency)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Semesters)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Semesters)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.CreationDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ModificationDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ModificationDate)
+                </dd>
+            </dl>
+            <br>
+            <h3>@Html.DisplayNameFor(model => model.PersonalStatement)</h3>
+            <p>@Html.DisplayFor(model => model.PersonalStatement)</p>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a> |
+        <a asp-action="List">Back to List</a>
+    </div>
+
+</div>

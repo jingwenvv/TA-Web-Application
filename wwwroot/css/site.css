@@ -1,0 +1,222 @@
+﻿/*
+Author: Jingwen Zhang
+Partner: -Na-
+Date: 2021/9/28
+Course: CS 4540, University of Utah, School of Computing
+Copyright: CS 4540 and Jingwen Zhang - This work may not be copied for use in Academic Coursework.
+
+I, Jingwen Zhang, certify that I wrote this code from scratch and did not copy it in part or whole from
+another source. Any references used in the completion of the assignment are cited in my README file.
+*/
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+/*    NEW CSS STYLE begins here   */
+
+/* Sets the body style of all pages*/
+body {
+    background-image: url("../img/purty_wood.png");
+}
+
+/* Sets the style for headers*/
+.default_header {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'PT Serif', serif;
+    /*padding-bottom: 20px;*/
+}
+
+
+/* Specifies the header bar style.*/
+ul a {
+    display: block;
+}
+
+ul {
+    display: inline-block;
+}
+
+
+    ul li.nav-item:hover {
+        border-radius: 50px;
+        background-color: #ddd;
+    }
+
+li.nav-item {
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-item-username {
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.nav-line-1-container {
+    font-size: 16px;
+}
+
+.nav-line-2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn btn-outline-success my-2 my-sm-0 {
+    margin: 10px;
+}
+/* Style elements in CourseList page*/
+.course_section {
+    background-image: url("../img/whitewall.png");
+    border: none;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+/* Styles for TA tables*/
+
+td {
+    border: 2px solid #ddd;
+    padding: 6px;
+    text-align: center;
+}
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+th {
+    padding:6px;
+    text-align: center;
+    background-image: url("../img/retina_wood.png");
+}
+
+
+/* Specifies the styles in Applicants page*/
+.applicant_table {
+    background-image: url("../img/tree_bark.png");
+    width: 100%;
+}
+
+
+/* Styles in Application View page*/
+.nav nav-pills flex-column {
+    padding: 20px;
+}
+
+.applicant_view {
+    background-image: url("../img/bgnoise.png");
+    border: none;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-top: 50px;
+}
+
+.nav nav-pills flex-column {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.application_form {
+    background-image: url("../img/congruent_pentagon.png");
+    border: none;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-top: 50px;
+}
+
+.application_edit {
+    background-image: url("../img/whitewall.png");
+    border: none;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-top: 50px;
+    font: solid;
+}
+
+.list_section {
+    background-image: url("../img/whitewall.png");
+    border: none;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+
+
+
